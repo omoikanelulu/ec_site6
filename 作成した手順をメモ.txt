@@ -1,0 +1,46 @@
+【laravel6のインストール】
+composer create-project "laravel/laravel=6.*" プロジェクト名 --prefer-dist
+
+【認証機能追加】
+composer require laravel/ui="1.*" --dev
+php artisan ui vue --auth
+
+【これすると上記で作成されたファイルを置き換えるようなので、これだけでいいのかも？】
+php artisan ui bootstrap
+php artisan ui bootstrap　--auth
+
+【脆弱性を全修正する】（使わなかった）
+npm audit fix --force
+
+「Error: error:0308010C:digital envelope routines::unsupported」というエラーが発生。
+ググって出てきたstack overflowに記載のあった「set NODE_OPTIONS=--openssl-legacy-provider」する事対処。
+
+DBにsqliteを使用する為、.envとconfig/database.phpを修正。
+DB_CONNECTIONの項目をsqliteに変更する。
+
+ここらでサーバを立ち上げて動作確認、welcomeページが表示されてて、認証機能のリンクが表示されてればOKかな。
+
+【ModelとMigrationファイルを作成】
+php artisan make:model モデル名 -m
+-mのオプションを付けるとMigrationファイルも合わせて作成される。
+
+【Seederファイルの作成】
+php artisan make:seed シーダーファイル名
+
+    "基本的にシーダーファイルにはデータベースに情報を挿入するための
+    ■Eloquant
+    ■DBファサード
+    あたりのどれかが必要となってきます。"
+
+ファサードを使う場合
+use Illuminate\Support\Facades\DB; //追記する
+
+Seederを実行する前に、SeederフォルダにあるDatabaseSeeder.phpに
+作成したSeederファイルを記述する必要がある。
+
+そしてLaravelフォルダ上で下記を実行する
+composer dump-autoload
+    "シーダー機能はPHPのオートロード（つまりはcomposerを使う）を利用しますので上記コマンドが必要となります。"
+
+【シーディングを実行】
+php artisan db:seed
