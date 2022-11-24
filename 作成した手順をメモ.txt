@@ -91,3 +91,18 @@ middlewareのauthを使用するだけで実現出来る
     ->middleware('auth')（ルート情報にミドルウェアを使用する記述を行う）
 
 Route::get('/mycart', 'ShopController@myCart')->middleware('auth');
+
+カートに商品を追加
+カートに入れるボタンを<form>で作成、actionにはカートに入れる処理のアドレスを記述する
+
+    <form action="mycart" method="post">
+        @csrf
+        <input type="hidden" name="stock_id" value="{{ $stock->id }}">
+        <input type="submit" value="カートに入れる" class="btn btn-primary">
+    </form>
+
+"ちなみにGET送信とPOST送信の違いがわからない方は、
+・GET送信→普通にアクセス
+・POST送信→formを経由してのアクセス
+くらいの認識で今は十分かなと思います。"
+

@@ -12,7 +12,10 @@
 */
 
 Route::get('/', 'ShopController@index');
+
 Route::get('/mycart', 'ShopController@mycart')->middleware('auth');
+Route::post('/mycart', 'ShopController@addMyCart');
+
 
 Auth::routes();
 

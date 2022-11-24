@@ -14,9 +14,19 @@
                                 <li>{{ $stock->fee }}</li>
                                 <li><img src="/image/{{ $stock->img_path }}" alt="" class="incart"></li>
                                 <li>{{ $stock->detail }}</li>
+                                <form action="mycart" method="post">
+                                    @csrf
+                                    <input type="hidden" name="stock_id" value="{{ $stock->id }}">
+                                    <input type="submit" value="カートに入れる" class="btn btn-primary">
+                                </form>
+                                <a href="/" class="text-center">商品一覧へ</a>
+
                             </ul>
                         @endforeach
-                        {{ $stocks->links() }}
+                        <div class="text-center" style="width: 200px; margin:20px auto;">
+                            {{ $stocks->links() }}
+                        </div>
+
                     </div>
                 </div>
             </div>
