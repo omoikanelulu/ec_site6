@@ -44,3 +44,50 @@ composer dump-autoload
 
 【シーディングを実行】
 php artisan db:seed
+
+【ルーティングの設定】（web.php）
+コントローラを用いるため、Route::get('アドレス', 'コントローラ@アクション名');という要領で、
+Route::get('/', 'ShopController@index');等とする。
+
+【コントローラの作成】
+php artisan make:controller コントローラ名
+
+【一連の流れ】
+この流れの作成順は、自分なりに分かりやすい順番で作った方がいいかも知れん。
+
+    http://localhost/にアクセス
+    ↓
+    web.phpでルーティング（指定したアドレスにアクセスした時に、どんなアクションをさせるか設定）
+    ↓
+    ShopControllerのindexメソッドを発動（コントローラにページを表示させる記述）
+    ↓
+    上記の通りreturnでshop.blade.phpを返す処理（bladeの表示）
+
+と言う一連の流れが出来上がりました。
+
+【Modelの作成】
+Modelの作成のコマンドに「--m」でMigrationファイルをまとめて作成できるから、
+Modelの作成はもっと早くても良いような。
+
+php artisan make:model Models/Stock
+
+これで、Modelsフォルダ内にStockモデルが作成される。
+このStock.phpはどこにも実際のデータベースのStocksテーブルと結び付ける記述がどこにもありません。
+
+けどLaravelの命名規則で、Modelのクラス名を単数形で指定して、
+テーブル名を複数形にするというのがあるので、それを満たしておけば勝手にLaravelが判断して結びつけてくれます。
+今回だと「Stock」モデルと「Stocks」テーブル。
+他にも「Person」モデルと「Peaple」テーブル。
+
+protected $table = 'test_table';
+などを追記すればそのモデル名とは関係ないテーブルと紐付けも可能です。
+
+protected $guarded = ['id'];（idカラムを保護する）
+protected $fillable = ['id'];（idカラムを編集可能にする）
+
+ログインしている人だけに表示させたい！
+middlewareのauthを使用するだけで実現出来る
+
+    ->middleware('auth')（ルート情報にミドルウェアを使用する記述を行う）
+
+Route::get('/mycart', 'ShopController@myCart')->middleware('auth');
