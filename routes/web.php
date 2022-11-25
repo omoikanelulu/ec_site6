@@ -14,7 +14,7 @@
 Route::get('/', 'ShopController@index');
 
 Route::get('/mycart', 'ShopController@mycart')->middleware('auth');
-Route::post('/mycart', 'ShopController@addMyCart');
+Route::post('/mycart', 'ShopController@addMyCart')->middleware('auth');
 
 
 Auth::routes();

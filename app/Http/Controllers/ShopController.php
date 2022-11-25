@@ -11,7 +11,7 @@ class ShopController extends Controller
 {
     public function index(Request $request)
     {
-        $stocks = Stock::paginate(4);
+        $stocks = Stock::paginate(6);
         return view('shop', compact('stocks'));
     }
 
@@ -23,11 +23,11 @@ class ShopController extends Controller
 
     public function addMyCart(Request $request)
     {
-        $user_id = auth('id');
+        $user_id = Auth::id();
         $stock_id = $request->stock_id;
         $cart_add_info = Cart::firstOrCreate(['stock_id' => $stock_id, 'user_id' => $user_id]);
 
-        if ($cart_add_info->wasRecentlyCreate) {
+        if ($cart_add_info->wasRecentlyCreated) {
             $message = 'カートに追加しました';
         } else {
             $message = 'カートに登録済みです';

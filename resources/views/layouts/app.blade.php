@@ -19,10 +19,56 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
     <style>
         ul {
             list-style: none;
+            padding: 0;
+            margin-right: 2rem;
+        }
+
+        img.cart {
+            width: 30px;
+        }
+
+        img.incart {
+            width: 50%;
+            display: block;
+            margin: 0 auto;
+            height: 140px;
+            object-fit: cover;
+        }
+
+        .mycart-box {
+            color: #4c4c4c;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 24px;
+            padding: 24px 8px;
+            font-size: 1.1em;
+            background-color: #e8e2e2;
+        }
+
+        .footer-design {
+            background-color: #07728a;
+            text-align: center;
+            color: #fefefe;
+            padding: 60px;
+        }
+
+        .buy-btn {
+            margin: 40px auto 60px;
+            width: 200px;
+            display: block;
+            background-color: #ff5c73;
+        }
+
+        .ball {
+            position: absolute;
+        }
+
+        .pagenate {
+            width: 200px;
+            margin: 20px auto;
         }
     </style>
 </head>
@@ -76,8 +122,15 @@
                                         style="display: none;">
                                         @csrf
                                     </form>
+                                    {{-- 追加 --}}
+                                    <a class="dropdown-item" href="{{ url('/mycart') }}">
+                                        カートを見る
+                                    </a>
                                 </div>
                             </li>
+                            <a href="{{ url('/mycart') }}">
+                                <img src="{{ asset('image/cart_icon.svg') }}" class="cart" alt="">
+                            </a>
                         @endguest
                     </ul>
                 </div>
