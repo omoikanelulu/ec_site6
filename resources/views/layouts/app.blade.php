@@ -128,6 +128,7 @@
                                     </a>
                                 </div>
                             </li>
+                            {{-- 追加 --}}
                             <a href="{{ url('/mycart') }}">
                                 <img src="{{ asset('image/cart_icon.svg') }}" class="cart" alt="">
                             </a>

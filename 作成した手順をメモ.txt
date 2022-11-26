@@ -106,3 +106,21 @@ Route::get('/mycart', 'ShopController@myCart')->middleware('auth');
 ・POST送信→formを経由してのアクセス
 くらいの認識で今は十分かなと思います。"
 
+【cssを書く場所】
+/resouces/sassフォルダに、_style.scssファイルを作成、ここにcssを書く。
+同フォルダのapp.scss内に@import 'style';を追記する事で、cssを読み込むようになる。
+
+    "ですが、このままだと反映されません。
+    scss(sass)ファイルはコンパイルしてcssに変換してあげる必要があります。
+    Laravelにはlaravel Mixというビルドツールが最初から入っているので
+    ターミナルから「npm run dev」を実行する事で反映されるようになる"
+
+今回は「npm run dev」でエラーが出るので、レイアウトの<head>に書く事にした。
+
+【public function myCart(Cart $cart)この引数何なん？】
+"メソッドインジェクションです。
+俗に言うDI(依存性注入)の方法の一つですね。
+名前かっこいいですが、でやってくれているのは、
+$cart = new Cart();
+という通常のインスタンス化の記述を不要にしてくれてるくらい"
+

@@ -15,9 +15,9 @@ class ShopController extends Controller
         return view('shop', compact('stocks'));
     }
 
-    public function myCart(Request $request)
+    public function myCart(Cart $cart)
     {
-        $my_carts = Cart::all();
+        $my_carts = $cart->showCart();
         return view('mycart', compact('my_carts'));
     }
 
