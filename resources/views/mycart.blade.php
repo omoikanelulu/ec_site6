@@ -12,8 +12,14 @@
                         @foreach ($my_carts as $my_cart)
                             <ul>
                                 <div class="mycart-box">
-                                    <li>ユーザID:{{ $my_cart->user_id }}</li>
-                                    <li>ストックID:{{ $my_cart->stock_id }}</li>
+                                    <li>{{ $my_cart->stock->name }}</li>
+                                    <li>${{ number_format($my_cart->stock->fee) }}</li>
+                                    <li><img src="/image/{{ $my_cart->stock->img_path }}" alt="" class="incart"></li>
+                                    <form action="/cartdelete" method="post">
+                                        @csrf
+                                        <input type="hidden" name="stock_id" value="{{ $my_cart->stock->id }}">
+                                        <input type="submit" value="カートから削除する">
+                                    </form>
                                 </div>
                             </ul>
                         @endforeach
