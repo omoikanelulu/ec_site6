@@ -18,6 +18,8 @@ Route::post('/mycart', 'ShopController@addMyCart')->middleware('auth');
 
 Route::post('/cartdelete', 'ShopController@deleteCart')->middleware('auth');
 
+Route::post('/checkout', 'ShopController@checkout')->middleware('auth');
+
 
 Auth::routes();
 
