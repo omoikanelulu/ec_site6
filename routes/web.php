@@ -13,13 +13,15 @@
 
 Route::get('/', 'ShopController@index');
 
-Route::get('/mycart', 'ShopController@mycart')->middleware('auth');
-Route::post('/mycart', 'ShopController@addMyCart')->middleware('auth');
-
-Route::post('/cartdelete', 'ShopController@deleteCart')->middleware('auth');
-
-Route::post('/checkout', 'ShopController@checkout')->middleware('auth');
-
+//Middleware['auth']をグループ内のルーティング全てに適用する書き方
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/mycart', 'ShopController@mycart');
+    Route::post('/mycart', 'ShopController@addMyCart');
+    Route::post('/cartdelete', 'ShopController@deleteCart');
+    Route::post('/checkout', 'ShopController@checkout');
+    //下記と同じ意味になる
+    // Route::post('/checkout', 'ShopController@checkout')->middleware('auth');
+});
 
 Auth::routes();
 

@@ -141,6 +141,27 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <footer class="footer-design">
+            @guest
+                <p class="nav-item" style="display:inline;">
+                    <a class="nav-link" href="{{ route('login') }}"
+                        {{-- style="color: #fefefe; display:inline;">{{ __('ログイン') }}</a> --}}
+                        style="color: #fefefe; display:inline;">{{__('ログイン')}}</a>
+                    @if (Route::has('register'))
+                        <a class="nav-link" href="{{ route('register') }}"
+                            style="color: #fefefe; display:inline;">{{ __('会員登録') }}</a>
+                </p>
+                @endif
+            @endguest
+            <br>
+            <div style="margin-top:24px;">
+                なんでも売ります<br>
+                <p style="font-size:2.4em">Larashop</p><br>
+            </div>
+
+            <p style="font-size:0.7em;">@copyright @lulu</p>
+        </footer>
     </div>
 </body>
 
