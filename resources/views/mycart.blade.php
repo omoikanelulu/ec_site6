@@ -9,7 +9,7 @@
                 <div class="">
                     <p class="text-center">{{ $message ?? '' }}</p>
                     @if ($my_carts->isNotEmpty())
-                        <div class="d-flex flex-row flex-wrap">
+                        <div class="d-flex flex-row flex-wrap justify-content-center">
                             @foreach ($my_carts as $my_cart)
                                 <ul>
                                     <div class="mycart-box">
