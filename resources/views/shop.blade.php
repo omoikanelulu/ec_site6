@@ -11,7 +11,7 @@
                             <div class="col-4 d-flex justify-content-center">
                                 <ul>
                                     <li>{{ $stock->name }}</li>
-                                    <li>${{ $stock->fee }}</li>
+                                    <li>${{ number_format($stock->fee) }}</li>
                                     <li><img src="/image/{{ $stock->img_path }}" alt="" class="incart"></li>
                                     <li>{{ $stock->detail }}</li>
                                     <form action="mycart" method="post" class="d-flex justify-content-center">
