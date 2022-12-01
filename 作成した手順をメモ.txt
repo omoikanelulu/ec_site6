@@ -2,6 +2,7 @@
 composer create-project "laravel/laravel=6.*" プロジェクト名 --prefer-dist
 
 【認証機能追加】
+//これでuiの機能がインストールされる感じ？
 composer require laravel/ui="1.*" --dev
 php artisan ui vue --auth
 
