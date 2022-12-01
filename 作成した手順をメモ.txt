@@ -7,7 +7,7 @@ php artisan ui vue --auth
 
 【これすると上記で作成されたファイルを置き換えるようなので、これだけでいいのかも？】
 php artisan ui bootstrap
-php artisan ui bootstrap　--auth
+php artisan ui bootstrap --auth
 
 【脆弱性を全修正する】（使わなかった）
 npm audit fix --force
